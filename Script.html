@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        .campo {
+            display: flex;
+            margin: 20px;
+            justify-content: space-between;
+        }
+        #formulario {
+            border: 1px solid black;
+            width: fit-content;
+            
+        }
+        h2 {
+            text-align: center;
+            margin: 30px 15px;
+        }
+        #button{
+            display: flex;
+            justify-content: center;
+            padding: 30px;
+        }
+        button {
+            font-size: 17px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        table, tr, td{
+            border: 1px solid black;
+        }
+        td {
+            padding: 4px 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="formulario">
+        <h2>Atividade 2</h2>
+        <div class="campo">
+            <label for="nome">Nome: </label>
+        <input type="text" name="nome" id="nome" />
+    </div>
+    <div class="campo">
+        <label for="nascimento">Ano de Nascimento:</label>
+        <input type="text" name="nascimento" id="nascimento" />
+    </div>
+    <div id="button">
+        <button onclick="verificar()">Calcular</button>
+
+    </div>
+    <table id="resultado" style="display: none">
+        <tr>
+            <td>Nome:</td>
+            <td id="t-nome"></td>
+        </tr>
+        <tr>
+            <td>Idade:</td>
+            <td id="t-idade"></td>
+        </tr>
+        <tr>
+            <td>Status:</td>
+            <td id="t-status"></td>
+        </tr>
+        <tr>
+            <td>Apto para aposentar:</td>
+            <td id="t-aposentar"></td>
+        </tr>
+    </table>
+</div>
+
+    <Script>
+        // Declaração das variáveis
+        function verificar(){
+    const nome = document.querySelector("#nome").value;
+    const anoNascimento = document.querySelector("#nascimento").value;
+
+    const tnome = document.querySelector("#t-nome");
+    const tidade = document.querySelector("#t-idade");
+    const tstatus = document.querySelector("#t-status");
+    const taposentar = document.querySelector("#t-aposentar");
+
+    const dataAtual = new Date();
+    const anoAtual = dataAtual.getFullYear();
+
+    const idade = anoAtual - anoNascimento;
+
+    // Preencher tabela
+    tnome.innerText = nome;
+    tidade.innerText = idade;
+
+    if (idade >= 18) {
+        tstatus.innerText = "Maior de idade";
+    } else {
+        tstatus.innerText = "Menor de idade";
+    }
+
+    const aposentadoria = idade >= 65 
+        ? "Já pode se aposentar"
+        : "Ainda não pode se aposentar";
+
+    taposentar.innerText = aposentadoria;
+
+    // MOSTRAR a tabela
+    document.querySelector("#resultado").style.display = "table";
+}
+    </Script>
+    
+</body>
+</html>
